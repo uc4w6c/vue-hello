@@ -1,0 +1,21 @@
+// classの中身を変更する
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="static"
+      class="static"
+      v-bind:class="{ active: isActive, 'text-danger': hasError }"
+    >test</div>
+    <script type="text/javascript">
+      var static = new Vue({
+        el: '#static',
+        data: {
+          isActive: true,
+          hasError: false
+        }
+      })
+    </script>
+  </body>
+</html>
