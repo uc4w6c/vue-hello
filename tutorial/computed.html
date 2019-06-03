@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<title>Filter を試す</title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<div id="app">
+    <p>{{ items[0].name }}: {{ items[0].price }} × {{ items[0].quantity }}</p>
+    <p>小計: {{ totalPrice | numberWithDelimiter }}円</p>
+    <p>合計(税込): {{ totalPriceWithTax | numberWithDelimiter }}円</p>
+</div>
+<script src="computed.js"></script>
