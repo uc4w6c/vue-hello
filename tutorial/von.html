@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<title>Forを試す</title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<div id="app">
+    <div v-bind:style="errorMessageStyle">
+        <ul>
+            <!-- 各商品の単価と購入個数をリスト表示する -->
+            <li v-for="item in items" v-bind:key="item.name">
+                {{ item.name }}の個数: 
+                    <!-- <input type="number" v-on:input="item.quantity = $event.target.value" 
+                            v-bind:value="item.quantity" min="0"> -->
+                    <!-- v-on:changeにすることでフォーカスが外れた時にイベント発火 -->
+                    <input type="number" v-on:change="item.quantity = $event.target.value" 
+                            v-bind:value="item.quantity" min="0">
+            </li>
+        </ul>
+        <hr>
+        <div v-bind:style="errorMessageStyle">
+            <ul>
+                <li v-for="item in items" v-bind:key="item.name">
+                    {{ item.name }}: {{ item.price }} × {{ item.quantity }} = 
+                        {{ item.price * item.quantity | numberWithDelimiter }}円
+                </li>
+            </ul>
+        </div>
+        <p>{{ items[0].name }}: {{ items[0].price }} × {{ items[0].quantity }}</p>
+        <p>小計: {{ totalPrice | numberWithDelimiter }}円</p>
+        <p>合計(税込): {{ totalPriceWithTax | numberWithDelimiter }}円</p>
+        <p v-show="!canBuy">
+            {{ 1000 | numberWithDelimiter }}円以上からご購入いただけます
+        </p>
+    </div>
+</div>
+<script src="von.js"></script>
