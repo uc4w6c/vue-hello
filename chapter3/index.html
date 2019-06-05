@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<ul id="example">
+    <list-item></list-item>
+</ul>
+
+<script>
+Vue.component('list-item', {
+    template: '<li>foo {{ contents }}</li>',
+    data: function () {
+        return {contents: 'bar'}
+    }
+})
+
+new Vue({ el: '#example' })
+</script>
