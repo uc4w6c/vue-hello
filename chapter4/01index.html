@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Vue.js SPAのサンプルアプリケーション</title>
+    </head>
+    <body>
+        <div id="app">
+            <router-link to="/top">トップページ</router-link>
+            <router-link to="/users">ユーザー一覧ページ</router-link>
+            <router-link :to="{ name: 'user', params: { userId: 123 }}">ユーザー詳細ページ</router-link>
+            <router-view></router-view>
+        </div>
+        
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+        <script>
+        var router = new VueRouter({
+            routes: [
+                {
+                    path: '/top',
+                    component: {
+                        template: '<div>トップページです。</div>'
+                    }
+                },
+                {
+                    path: '/users',
+                    component: {
+                        template: '<div>ユーザー一覧ページです。</div>'
+                    }
+                },
+                {
+                    path: '/users/:userId',
+                    name: 'user',
+                    component: {
+                        template: '<div>ユーザーIDは {{ $route.params.userId }}です。</div>'
+                    }
+                }
+            ]
+        })
+
+        var app = new Vue({
+            router: router
+        }).$mount('#app')
+        </script>
+    </body>
+</html>
