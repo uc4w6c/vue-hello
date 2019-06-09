@@ -3,10 +3,15 @@
     <head>
         <meta charset="UTF-8">
         <title>Vue.js SPAのサンプルアプリケーション</title>
+        <style>
+            [v-cloak] {
+                display: none
+            }
+        </style>
     </head>
     <body>
         <div id="app">
-            <nav>
+            <nav v-cloak>
                 <router-link to="/top">トップページ</router-link>
                 <router-link to="/users">ユーザー一覧ページ</router-link>
                 <router-link to="/users/new?redirect=true">新規ユーザー登録</router-link>
@@ -26,7 +31,7 @@
                     {{ error }}
                 </div>
                 <div v-for="user in users" :key="user.id">
-                    <router-link :to="{ path: '/users' + user.id }">{{ user.name }}</router-link>
+                    <router-link :to="{ path: '/users/' + user.id }">{{ user.name }}</router-link>
                 </div>
             </div>
         </script>
@@ -278,7 +283,7 @@
                     component: UserList
                 },
                 {
-                    path: 'users/new',
+                    path: '/users/new',
                     component: UserCreate,
                     beforeEnter: function(to, from, next) {
                         if (!Auth.loggedIn()) {
