@@ -270,6 +270,30 @@
             }
         }
 
+        // routeで子ページを確認するためのコンポーネント
+        var User = {
+            template: 
+                '<div class="user>' +
+                    '<h2>ユーザーIDは {{ $route.params.userId }} です。</h2>' +
+                    '<router-link :to="\'user/\' + $route.params.userId + \'/profile\'">ユーザー投稿ページを見る</router-link>' +
+                    '<router-view></router-view>' +
+                '</div>'
+        }
+
+        var UserProfile = {
+            template: 
+                '<div class="user-profile">' +
+                    '<h3>こちらはユーザー {{ $route.params.userId }} のプロフィールページです。</h3>' +
+                '</div>'
+        }
+
+        var UserPosts = {
+            template: 
+                '<div class="user-posts">' +
+                    '<h3>こちらはユーザー {{ $route.params.userId }} の投稿ページです。</h3>' +
+                '</div>'
+        }
+
         var router = new VueRouter({
             routes: [
                 {
@@ -298,7 +322,20 @@
                 },
                 {
                     path: '/users/:userId',
-                    component: UserDetail
+                    name: 'user',
+                    //component: UserDetail
+                    // 以下はツリー構造を試している
+                    component: User,
+                    children: [
+                        {
+                            path: 'profile',
+                            component: UserProfile
+                        },
+                        {
+                            path: 'posts',
+                            component: UserPosts
+                        }
+                    ]
                 },
                 {
                     path: '/login',
