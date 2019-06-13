@@ -1,7 +1,7 @@
 <template>
     <form novalidate>
         <p :class="alertValidation">{{ validMessage }}</p>
-        <textarea @imput="onInput" :class="textbotValidation"></textarea>
+        <textarea @input="onInput" :class="textbotValidation"></textarea>
     </form>
 </template>
 
@@ -32,6 +32,7 @@ export default {
 }
 </script>
 
+// CSSをモジュール化
 <style module="alert">
 .success {
     color: green;
